@@ -34,7 +34,8 @@ print("0. ", response.text)
 property = response.json()['results'][0]['properties']
 property.pop('Created time')
 property.pop('Last edited time')
-property['Name']['title'][0]['text']['content'] = "Daily Note "+datetime.date.today().strftime("%Y/%m/%d")
+property['Name']['title'][0]['text']['content'] = "Daily Note " + \
+    datetime.date.today().strftime("%Y/%m/%d")
 id = response.json()['results'][0]['id']
 
 print("1. ", property)
@@ -82,3 +83,17 @@ print("3. ", payload)
 
 response = requests.post(url, json=payload, headers=headers)
 print("4. ", response.text)
+
+
+url = f"https://api.notion.com/v1/pages/{id}"
+
+payload = {
+    "properties": {
+        "Checkbox": {
+            "checkbox": True
+        }
+    }
+}
+response = requests.patch(url, json=payload, headers=headers)
+
+print("5. ", response.text)
