@@ -30,6 +30,7 @@ json_data = {
     ]
 }
 response = requests.post(url, json=json_data, headers=headers)
+
 property = response.json()['results'][0]['properties']
 property.pop('Created time')
 property.pop('Last edited time')
