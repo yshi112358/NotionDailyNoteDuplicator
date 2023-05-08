@@ -22,3 +22,6 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a Python script
         run: python main.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
