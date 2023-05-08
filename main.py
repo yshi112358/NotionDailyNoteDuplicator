@@ -1,6 +1,6 @@
 import requests
 import os
-import json
+import datetime
 
 token = os.getenv('NOTION_TOKEN')
 database_id = os.getenv('NOTION_DATABASE_ID')
@@ -34,6 +34,7 @@ print("0. ", response.text)
 property = response.json()['results'][0]['properties']
 property.pop('Created time')
 property.pop('Last edited time')
+property['Name']['title'][0]['text']['content'] = "Daily Note "+datetime.date.today().strftime("%Y/%m/%d")
 id = response.json()['results'][0]['id']
 
 print("1. ", property)
